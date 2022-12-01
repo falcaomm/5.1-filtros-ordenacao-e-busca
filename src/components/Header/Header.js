@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./styles";
 
-const Header = () => {
+const Header = (props) => {
   const pokemontypesArray = [
     "Normal",
     "Fire",
@@ -23,10 +23,28 @@ const Header = () => {
     "Fairy",
   ];
 
+  const onChangeId = (aqVaiQualquerCoisa) => {
+    props.setId(aqVaiQualquerCoisa.target.value)
+  }
+
+  const onChangeName = (aqVaiQualquerCoisa) => {
+    props.setName(aqVaiQualquerCoisa.target.value)
+  }
+
   return (
     <Container>
-      <input type="number" placeholder="Buscar por id" />
-      <input type="text" placeholder="Buscar por nome" />
+      <input
+        type="number"
+        placeholder="Buscar por id" 
+        value={props.id}
+        onChange={(e)=>onChangeId(e)}
+      />
+      <input
+        type="text"
+        placeholder="Buscar por nome"
+        value={props.name}
+        onChange={(e) => onChangeName(e)}
+      />
       <select>
         <option value="">Ordenar</option>
         <option value="">Crescente</option>
