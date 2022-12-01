@@ -31,6 +31,14 @@ const Header = (props) => {
     props.setName(aqVaiQualquerCoisa.target.value)
   }
 
+  const onChangeType = (e) => {
+    props.setType(e.target.value)
+  }
+
+  const onChangeOrder = (e) => {
+    props.setOrder(e.target.value)
+  }
+
   return (
     <Container>
       <input
@@ -45,16 +53,26 @@ const Header = (props) => {
         value={props.name}
         onChange={(e) => onChangeName(e)}
       />
-      <select>
+      <select
+        onChange={(e) => onChangeOrder(e)}
+      >
         <option value="">Ordenar</option>
-        <option value="">Crescente</option>
-        <option value="">Decrescente</option>
+        <option value="cre">Crescente</option>
+        <option value="dec">Decrescente</option>
       </select>
-      <select name="tipo" id="tipo">
+      <select
+        name="tipo"
+        id="tipo"
+        onChange={(e) => onChangeType(e)}
+      >
         <option value="">Selecione um tipo</option>
-        {pokemontypesArray.map((type) => {
+        {pokemontypesArray.map((type) =>
+        {
           return (
-            <option key={type} value={type}>
+            <option
+              key={type}
+              value={type}
+            >
               {type}
             </option>
           );

@@ -22,6 +22,8 @@ function App() {
 
   const [id, setId] = useState("")
   const [name, setName] = useState("")
+  const [type, setType] = useState("")
+  const [order, setOrder] = useState("")
 
 
   // id ==="" ? pokemons.map : pokemons.filter esses .filter e .map seriam variaveis que armazenariam os maps e esse ternário seria chamado dentro de chaves no return no lugar de tooodo o codigo que tem o filter e map
@@ -34,6 +36,10 @@ function App() {
         setId={setId}
         name={name}
         setName={setName}
+        type={type}
+        setType={setType}
+        order={order}
+        setOrder={setOrder}
       />
       <CardsContainer>
         {pokemons
@@ -48,6 +54,22 @@ function App() {
           .filter((pokemon) => {
             const pokemonName = pokemon.name.english.toLowerCase()
             return pokemonName.includes(name.toLowerCase())
+          })
+        
+          .filter((pokemon) => {
+            if (pokemon.type.length === 1) {
+              return pokemon.type[0].includes(type)
+            } else {
+              return pokemon.type[0].includes(type) || pokemon.type[1].includes(type)
+            }
+          })
+
+          .sort((currentPoke, nextPoke) => {
+            if (order === "cre") {
+              return currentPoke.name.english.localeCompare(nextPoke.name.english)
+            } else if (order === "dec") {
+              return nextPoke.name.english.localeCompare(currentPoke.name.english)
+            }
           })
 
           .map((pokemon) => {
